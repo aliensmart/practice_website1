@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def index(request):
-    return render(request, 'app/index.html')
+    return render(request, 'index.html')
 
 def user_login(request):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def user_login(request):
             return HttpResponse("Invalid Login detail")
 
     else:
-        return render(request, 'app/login.html')
+        return render(request, 'login.html')
 
 def register(request):
     registered = False
@@ -58,7 +58,7 @@ def register(request):
         user_form = UserForm
         profile_data = ProfileData
     
-    return render(request, 'app/register.html',
+    return render(request, 'registration.html',
                   {'user_form': user_form,
                    'profile_data': profile_data,
                    'registered': registered})
@@ -68,4 +68,3 @@ def register(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
-        

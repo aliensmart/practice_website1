@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+    {% if registered %}
+        <h1>Thank you for registering</h1>
+    {% else %}
+        <h1>Register here</h1>
+        <h3>Fill Out The Form</h3>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{user_form.as_p}}
+            {{profile_data.as_p}}
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+{% endblock %}
