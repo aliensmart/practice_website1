@@ -16,6 +16,7 @@
             <p>id: {{student.pk}}</p>
             <p>Name: {{student.full_name}}</p>
             <p>Age: {{student.age}}</p>
+        {% endfor %}
     </ol>
     <div class="update">
         <p><a href="{% url 'app:update' pk=school_detail.pk %}"></a></p>
