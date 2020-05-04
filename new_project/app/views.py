@@ -77,4 +77,22 @@ def user_logout(request):
 
 class SchoolListView(ListView):
     context_object_name = 'schools'
-    model = 
+    model = models.School
+
+class SchoolDetailView(DetailView):
+    context_object_name = 'school_detail'
+    model = models.School
+    template_name = 'app/school_details.html'
+
+class SchoolCreate(CreateView):
+    fields = ('name', 'principal', 'location', 'contact')
+    model = models.School
+
+class SchoolUpdate(UpdateView):
+    fields = ('name', 'principal', 'contact')
+    model = models.School
+
+class SchoolDelete(DeleteView):
+    model = models.School
+    success_url = reverse_lazy('app:list')
+    
