@@ -5,6 +5,12 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.views.generic import (View, TemplateView,
+                                  ListView, DetailView,
+                                  CreateView, UpdateView,
+                                  DeleteView)
+from . import models
+from django.urls import reverse_lazy
 
 # Create your views here.
 def index(request):
@@ -13,7 +19,7 @@ def index(request):
 def user_login(request):
     if request.method == 'POST':
         username = request.POST.get('username')
-        username = request.POST.get('username')
+        password = request.POST.get('password')
 
         user = authenticate(username=username, password=password)
 
@@ -44,7 +50,7 @@ def register(request):
             user.save()
 
             profile = profile_data.save(commit=False)
-            profile.save()
+            profile.user = user
 
             if 'profile_pic' in request.FILES:
                 profile.profile_pic = request.FILES['profile_pic']
@@ -68,3 +74,7 @@ def register(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+class SchoolListView(ListView):
+    context_object_name = 'schools'
+    model = 
