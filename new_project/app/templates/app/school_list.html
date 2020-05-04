@@ -4,6 +4,7 @@
 
 <h1>Welcome to The schools lists</h1>
 <ol>
+    <li><a href="{% url 'app:create' %}"></a></li>
     {% for school in schools %}
         <h2>
             <li><a href="{{school.id}}">{{school.name}}</a></li>

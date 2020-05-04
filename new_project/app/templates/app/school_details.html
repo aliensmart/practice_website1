@@ -5,6 +5,19 @@
         Welcome to the schools details page!
     </h1>
     <ol>
-        <h2>School details</h2>
+        <h2>School details:</h2>
+        <p>Name: {{school_detail.name}}</p>
+        <p>Princpal: {{school_detail.principal}}</p>
+        <p>Location: {{school_detail.location}}</p>
+        <p>Contact: {{school_detail.contact}}</p>
+
+        <h3>Students: </h3>
+        {% for student in school_detail.students.all %}
+            <p>id: {{student.pk}}</p>
+            <p>Name: {{student.full_name}}</p>
+            <p>Age: {{student.age}}</p>
     </ol>
+    <div class="update">
+        <p><a href="{% url 'app:update' pk=school_detail.pk %}"></a></p>
+    </div>
 {% endblock %}
